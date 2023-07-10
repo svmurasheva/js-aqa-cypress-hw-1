@@ -1,72 +1,76 @@
 import { errors } from "./test-data/errors"
-class ContactUsPage {
+export class ContactUsPage {
+
     
-    visit() {
-        cy.visit('https://www.webdriveruniversity.com/Contact-Us/contactus.html')
-    }
-    
-    getFirstName() {
-        return cy.get('input[name="first_name"]')
+    static get getFirstName() {
+        return cy.xpath('//input[@name="first_name"]')
     }
 
-    getLastName() {
-       return cy.get('input[name="last_name"]')
+    static get getLastName() {
+       return cy.xpath('//input[@name="last_name"]')
     }
 
-    getEmail() {
-        return cy.get('input[name="email"]')
+
+    static get getEmail() {
+        return cy.xpath('//input[@name="email"]')
     }
 
-    getComment() {
-        return cy.get('textarea[name="message"]')
+    static get getComment() {
+        return cy.xpath('//textarea[@name="message"]')
     }
 
-    getSubmitButton() {
-       return cy.get('#form_buttons').contains('SUBMIT');
+    static get getSubmitButton() {
+       return cy.xpath('//input[@type="submit"]');
     }
 
-    getResetButton() {
-        return cy.get('#form_buttons').contains('RESET');
+    static get getResetButton() {
+        return cy.xpath('//input[@type="reset"]');
     }
 
-    getContactUsHeader() {
-       return cy.get('name="contactme"')
+    static get getContactUsHeader() {
+       return cy.xpath('//h2[@name="contactme"]')
     }
 
-    getSuccessSubmitMessage() {
-      return cy.get('div#contact_reply > h1').contains('Thank You for your Message!');
+    static get getSuccessSubmitMessage() {
+      return cy.xpath('//h1[.="Thank You for your Message!"]');
     }
 
     fillContactUsForm(user) {
         if (user.first_name) {
-          this.getFirstName().type(user.first_name);
+            ContactUsPage.getFirstName.type(user.first_name);
         }
         if (user.last_name) {
-          this.getLastName().type(user.last_name);
+            ContactUsPage.getLastName.type(user.last_name);
         }
         if (user.email) {
-          this.getEmail().type(user.email);
+            ContactUsPage.getEmail.type(user.email);
         }
         if (user.comment) {
-         this.getComment().type(user.comment);
+            ContactUsPage.getComment.type(user.comment);
         }
-        this.getSubmitButton().click();
+        ContactUsPage.getSubmitButton.click();
     }
 
-    getInvalidEmailError() {
+    verifyContactUsForm(user) {
+        if (user.first_name) {
+            ContactUsPage.getFirstName.should('have.value', user.first_name)
+        }
+        if (user.last_name) {
+            ContactUsPage.getFirstName.should('have.value', user.last_name)
+        }
+        if (user.email) {
+            ContactUsPage.getFirstName.should('have.value', user.email)
+        }
+        if (user.comment) {
+            ContactUsPage.getFirstName.should('have.value', user.comment)
+        }
+    }
+
+    static get getInvalidEmailError() {
         return cy.contains(errors.invalidEmail);
     }
 
-    getAllFieldsAreRequaredError() {
-        return cy.contains(errors.allFieldsAreRequired);
+    static get getAllFieldsAreRequaredError() {
+       return cy.contains(errors.allFieldsAreRequired);
     }
 }
-
-export default ContactUsPage
-
-
-
-
-
-
-

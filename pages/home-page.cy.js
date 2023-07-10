@@ -1,4 +1,5 @@
-class HomePage {
+
+ export class HomePage {
 
   constructor(domainName) {
     this.domainName = domainName;
@@ -32,7 +33,7 @@ class HomePage {
   }
 
   getButtonFindOutMore() {
-    return cy.get('#button-find-out-more')
+    return cy.get('button#button-find-out-more')
         .should('be.visible')
         .click();
   }
@@ -42,25 +43,25 @@ class HomePage {
   }
 
   getModalButtonClose() {
-    return cy.contains('button.btn.btn-default', 'Close')
+    return cy.xpath('//button[contains(text(), "Close")]')
         .should('be.visible')
         .click();
   }
 
   getModalButtonFindOutMore() {
-    return cy.contains('button.btn.btn-default', 'Find Out More')
+    return cy.xpath('//button[contains(text(), "Find Out More")]') 
         .should('be.visible')
         .click();
   }
 
   getModalButtonX() {
-    return cy.get('div.modal-header>button.close')
+    return cy.xpath('//button[@class="close"]')
         .should('be.visible')
         .click();
   }
 }
 
-export default HomePage
+
 
 
 

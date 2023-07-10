@@ -9,51 +9,51 @@ class ProductPage {
     }
 
     getSpecialOffers() {
-        cy.get('#container-special-offers');
+        cy.get('div#container-special-offers');
     }
 
     getCameras() {
-        return cy.get('#cameras');
+        return cy.get('div#cameras');
     }
 
     getNewLaptops() {
-        return cy.get('#new-laptops');
+        return cy.get('div#new-laptops');
     }
 
     getUsedLaptops() {
-        return cy.get('#used-laptops');
+        return cy.get('div#used-laptops');
     }
 
     getGameConsoles() {
-        return cy.get('#game-consoles');
+        return cy.get('div#game-consoles');
     }
 
     getComponents() {
-        return cy.get('#components');
+        return cy.get('div#components');
     }
 
     getDesktopSystems() {
-        return cy.get('#desktop-systems');
+        return cy.get('div#desktop-systems');
     }
 
     getAudio() {
-        return cy.get('#audio');
+        return cy.get('div#audio');
     }
 
     getProductItems() {
-        return cy.get('div.row>div[data-target="#myModal"]');
+        return cy.xpath('//div[@data-target="#myModal"]');
     }
 
     getProductHeadings() {
-        return cy.get('div.row>div[data-target="#myModal"]>a>div.thumbnail>div.section-title>p.sub-heading');
+        return cy.xpath('//p[@class="sub-heading"]');
     }
 
     getProductImages() {
-        return cy.get('div.row>div[data-target="#myModal"]>a>div.thumbnail>div.caption>img');
+        return cy.xpath('//div[@class="caption"]/img');
     }
 
     getSpecialOfferModalContent() {
-        return cy.get('div#myModal>div>div.modal-content');
+        return cy.xpath('//div[@class="modal-content"]');
     }
 
     getSpecialOfferModalFadeIn() {
@@ -61,7 +61,7 @@ class ProductPage {
     }
 
     getSpecialOfferModalDismissButtons() {
-        return cy.get('div#myModal> * button[data-dismiss="modal"]');
+        return cy.xpath('//button[@data-dismiss="modal"]');
     }
 
 }
